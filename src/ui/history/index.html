@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analysis History</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: "Segoe UI", Arial, sans-serif;
+        --ct-bg: #f2efe7;
+        --ct-surface: #fff;
+        --ct-text: #1c1c1c;
+        --ct-muted: #6b6458;
+        --ct-border: #efe7d9;
+        --ct-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      }
+      body {
+        margin: 0;
+        background: var(--ct-bg);
+        color: var(--ct-text);
+      }
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 24px 20px 40px;
+      }
+      h1 {
+        font-size: 22px;
+        margin: 0 0 12px;
+      }
+      .controls {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+      .button {
+        border: 1px solid #1c1c1c;
+        background: #1c1c1c;
+        color: #fff;
+        border-radius: 10px;
+        padding: 8px 12px;
+        font-size: 13px;
+        cursor: pointer;
+        transition: transform 120ms ease, box-shadow 120ms ease;
+      }
+      .button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+      }
+      .button.secondary {
+        background: #fff;
+        color: #1c1c1c;
+      }
+      .button:focus-visible {
+        outline: 2px solid #1c1c1c;
+        outline-offset: 2px;
+      }
+      .table {
+        background: var(--ct-surface);
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: var(--ct-shadow);
+      }
+      .row {
+        display: grid;
+        grid-template-columns: 90px 1fr 140px 140px 90px;
+        gap: 8px;
+        padding: 10px 14px;
+        border-bottom: 1px solid var(--ct-border);
+        font-size: 12px;
+        align-items: center;
+      }
+      .row.header {
+        background: #f8f5ef;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+      }
+      .score-chip {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 64px;
+        padding: 4px 8px;
+        border-radius: 999px;
+        font-weight: 600;
+        background: #d7efd2;
+      }
+      .score-chip.mid {
+        background: #ffe0b6;
+      }
+      .score-chip.high {
+        background: #ffc3bc;
+      }
+      .message-cell {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .muted {
+        color: var(--ct-muted);
+      }
+      #empty {
+        margin-top: 12px;
+        padding: 14px;
+        border-radius: 10px;
+        background: #fbf8f1;
+        border: 1px dashed #ddd2c1;
+      }
+      @media (max-width: 860px) {
+        .row {
+          grid-template-columns: 90px 1fr;
+        }
+        .row.header div:nth-child(n + 3) {
+          display: none;
+        }
+        .row.data div:nth-child(n + 3) {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Analysis History</h1>
+      <div class="controls">
+        <button class="button" id="refresh">Refresh</button>
+        <button class="button secondary" id="export">Export</button>
+        <button class="button secondary" id="clear">Clear</button>
+      </div>
+      <div class="table" id="history-table">
+        <div class="row header">
+          <div>Score</div>
+          <div>Message</div>
+          <div>Emotions</div>
+          <div>Needs</div>
+          <div>Time</div>
+        </div>
+      </div>
+      <p class="muted" id="empty" hidden>No history yet. Type a message in a supported messenger and click Refresh.</p>
+    </div>
+    <script type="module" src="./history.ts"></script>
+  </body>
+</html>

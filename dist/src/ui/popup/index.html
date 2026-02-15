@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conflict Translator</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: "Segoe UI", Arial, sans-serif;
+        --ct-bg: #f6f3eb;
+        --ct-surface: #ffffff;
+        --ct-text: #1c1c1c;
+        --ct-muted: #5a5247;
+        --ct-border: #ddd2c1;
+        --ct-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+      }
+      body {
+        margin: 0;
+        background: var(--ct-bg);
+        color: var(--ct-text);
+      }
+      #app {
+        width: 320px;
+        padding: 14px 16px 18px;
+        box-sizing: border-box;
+      }
+      h1 {
+        font-size: 16px;
+        margin: 0 0 8px;
+      }
+      h2 {
+        font-size: 12px;
+        margin: 14px 0 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        color: var(--ct-muted);
+      }
+      .card {
+        background: var(--ct-surface);
+        border-radius: 12px;
+        padding: 10px 12px;
+        box-shadow: var(--ct-shadow);
+      }
+      .stat-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        margin: 4px 0;
+      }
+      .toggle {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 12px;
+        margin: 6px 0;
+      }
+      select {
+        width: 100%;
+        padding: 6px 8px;
+        border-radius: 8px;
+        border: 1px solid var(--ct-border);
+        background: var(--ct-surface);
+        font-size: 12px;
+      }
+      .links {
+        display: grid;
+        gap: 6px;
+      }
+      .link-button {
+        border: 1px solid #1c1c1c;
+        background: var(--ct-surface);
+        border-radius: 10px;
+        padding: 6px 10px;
+        font-size: 12px;
+        cursor: pointer;
+        transition: transform 120ms ease, box-shadow 120ms ease;
+      }
+      .link-button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+      .link-button.primary {
+        background: #1c1c1c;
+        color: #fff;
+      }
+      .link-button:focus-visible,
+      select:focus-visible {
+        outline: 2px solid #1c1c1c;
+        outline-offset: 2px;
+      }
+    </style>
+    <script type="module" crossorigin src="../../../assets/popup.js"></script>
+    <link rel="modulepreload" crossorigin href="../../../assets/modulepreload-polyfill.js">
+    <link rel="modulepreload" crossorigin href="../../../assets/storage.js">
+  </head>
+  <body>
+    <div id="app">
+      <h1>Conflict Translator</h1>
+
+      <h2>Usage statistics</h2>
+      <div class="card">
+        <div class="stat-row"><span>Messages analyzed</span><span data-stat="analyzed">0</span></div>
+        <div class="stat-row"><span>Conflicts prevented</span><span data-stat="prevented">0</span></div>
+        <div class="stat-row"><span>Avg severity</span><span><span data-stat="avg-before">0</span> → <span data-stat="avg-after">-</span></span></div>
+      </div>
+
+      <h2>Quick settings</h2>
+      <div class="card">
+        <label class="toggle"><span>Auto-analyze incoming</span><input id="auto-incoming" type="checkbox" /></label>
+        <label class="toggle"><span>Auto-analyze outgoing</span><input id="auto-outgoing" type="checkbox" /></label>
+        <label class="toggle"><span>Use context for scoring</span><input id="context-scoring" type="checkbox" /></label>
+        <label class="toggle" for="interface-language">Interface language</label>
+        <select id="interface-language">
+          <option value="en">English</option>
+          <option value="ru">Russian</option>
+        </select>
+      </div>
+
+      <h2>Links</h2>
+      <div class="links">
+        <button class="link-button primary" data-link="history">Analysis history</button>
+        <button class="link-button" data-link="settings">Settings</button>
+        <button class="link-button" data-link="about">About</button>
+      </div>
+    </div>
+  </body>
+</html>

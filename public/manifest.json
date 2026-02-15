@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "Conflict Translator",
+  "version": "0.1.0",
+  "description": "Turn conflicts into conversations.",
+  "permissions": ["activeTab", "storage", "scripting"],
+  "host_permissions": [
+    "*://web.telegram.org/*",
+    "*://web.whatsapp.com/*",
+    "*://vk.com/im/*",
+    "*://discord.com/channels/*",
+    "http://127.0.0.1:8000/*",
+    "http://localhost:8000/*"
+  ],
+  "background": {
+    "service_worker": "assets/service-worker.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "Conflict Translator",
+    "default_popup": "src/ui/popup/index.html"
+  },
+  "options_page": "src/ui/settings/index.html",
+  "content_scripts": [
+    {
+      "matches": [
+        "*://web.telegram.org/*",
+        "*://web.whatsapp.com/*",
+        "*://vk.com/im/*",
+        "*://discord.com/channels/*"
+      ],
+      "js": ["assets/content-iife.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["models/*", "assets/*", "src/ui/sidebar/index.html"],
+      "matches": [
+        "*://*/*"
+      ]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Conflict Translator</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: "Segoe UI", Arial, sans-serif;
+        --ct-bg: #f2efe7;
+        --ct-surface: #fff;
+        --ct-text: #1c1c1c;
+        --ct-muted: #6b6458;
+        --ct-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      }
+      body {
+        margin: 0;
+        background: var(--ct-bg);
+        color: var(--ct-text);
+      }
+      .container {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 28px 20px 40px;
+      }
+      h1 {
+        font-size: 22px;
+        margin: 0 0 10px;
+      }
+      .subtitle {
+        margin: 0 0 14px;
+        color: var(--ct-muted);
+        font-size: 13px;
+      }
+      p {
+        font-size: 14px;
+        line-height: 1.5;
+        margin: 0 0 10px;
+      }
+      .card {
+        background: var(--ct-surface);
+        border-radius: 14px;
+        padding: 18px;
+        box-shadow: var(--ct-shadow);
+      }
+      .meta {
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px solid #efe7d9;
+      }
+      .meta p {
+        font-size: 13px;
+        margin: 0 0 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>About Conflict Translator</h1>
+      <p class="subtitle">Calmer conversations without changing your workflow.</p>
+      <div class="card">
+        <p>Conflict Translator helps you rewrite messages to reduce conflict and improve clarity.</p>
+        <p>It analyzes draft text in supported messengers and suggests empathic, rational, and socratic alternatives.</p>
+        <div class="meta">
+          <p>Version: 0.1.0</p>
+          <p>Backend: Custom API (FastAPI + LLM)</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

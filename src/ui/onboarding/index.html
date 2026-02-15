@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to Conflict Translator</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: "Segoe UI", Arial, sans-serif;
+        --ct-bg: #f2efe7;
+        --ct-surface: #fff;
+        --ct-text: #1c1c1c;
+        --ct-muted: #6b6458;
+        --ct-border: #ddd2c1;
+        --ct-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+      }
+      body {
+        margin: 0;
+        background: var(--ct-bg);
+        color: var(--ct-text);
+      }
+      .container {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 28px 20px 40px;
+      }
+      .card {
+        background: var(--ct-surface);
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: var(--ct-shadow);
+      }
+      .progress {
+        font-size: 12px;
+        color: var(--ct-muted);
+        margin-bottom: 10px;
+      }
+      h1 {
+        font-size: 22px;
+        margin: 0 0 8px;
+      }
+      p {
+        font-size: 14px;
+        line-height: 1.5;
+        margin: 0 0 8px;
+      }
+      .step {
+        display: none;
+        min-height: 140px;
+      }
+      .step.active {
+        display: block;
+      }
+      .actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 16px;
+      }
+      .button {
+        border: 1px solid #1c1c1c;
+        background: #1c1c1c;
+        color: #fff;
+        border-radius: 10px;
+        padding: 8px 12px;
+        font-size: 13px;
+        cursor: pointer;
+        transition: transform 120ms ease, box-shadow 120ms ease;
+      }
+      .button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+      }
+      .button.secondary {
+        background: #fff;
+        color: #1c1c1c;
+      }
+      .inline {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+      }
+      input[type="text"] {
+        width: 100%;
+        padding: 6px 8px;
+        border-radius: 8px;
+        border: 1px solid var(--ct-border);
+        font-size: 13px;
+      }
+      .button:focus-visible,
+      input:focus-visible {
+        outline: 2px solid #1c1c1c;
+        outline-offset: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <div class="progress">Step-by-step setup</div>
+        <div class="step active" data-step="0">
+          <h1>Welcome to Conflict Translator</h1>
+          <p>We'll help you keep conversations calm and constructive across your favorite messengers.</p>
+        </div>
+
+        <div class="step" data-step="1">
+          <h1>Permissions</h1>
+          <p>We request access to your messenger tabs to analyze what you type and suggest calmer responses.</p>
+          <p>Your data stays local unless you enable backend analysis.</p>
+        </div>
+
+        <div class="step" data-step="2">
+          <h1>Choose messengers</h1>
+          <div class="inline">
+            <label><input id="onboard-whatsapp" type="checkbox" /> WhatsApp</label>
+            <label><input id="onboard-telegram" type="checkbox" /> Telegram</label>
+            <label><input id="onboard-vk" type="checkbox" /> VK</label>
+            <label><input id="onboard-discord" type="checkbox" /> Discord</label>
+          </div>
+        </div>
+
+        <div class="step" data-step="3">
+          <h1>Quick tutorial</h1>
+          <p>Type a message and the badge will show a conflict score.</p>
+          <p>Click the badge to see empathic, rational, or socratic alternatives.</p>
+          <p>Use the sidebar for details and history.</p>
+        </div>
+
+        <div class="step" data-step="4">
+          <h1>Test analysis</h1>
+          <p>Try a message like: "I hate you" and see the suggestions.</p>
+          <p>You can change settings anytime in the extension menu.</p>
+        </div>
+
+        <div class="actions">
+          <button class="button secondary" id="back">Back</button>
+          <button class="button" id="next">Next</button>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./onboarding.ts"></script>
+  </body>
+</html>

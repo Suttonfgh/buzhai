@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conflict Translator Settings</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: "Segoe UI", Arial, sans-serif;
+        --ct-bg: #f2efe7;
+        --ct-surface: #fff;
+        --ct-text: #1c1c1c;
+        --ct-muted: #5a5247;
+        --ct-border: #ddd2c1;
+        --ct-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      }
+      body {
+        margin: 0;
+        background: var(--ct-bg);
+        color: var(--ct-text);
+      }
+      .container {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 24px 20px 40px;
+      }
+      h1 {
+        font-size: 22px;
+        margin: 0 0 8px;
+      }
+      h2 {
+        font-size: 14px;
+        margin: 24px 0 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.7px;
+        color: var(--ct-muted);
+      }
+      .card {
+        background: var(--ct-surface);
+        border-radius: 14px;
+        padding: 16px;
+        box-shadow: var(--ct-shadow);
+      }
+      .row {
+        display: grid;
+        grid-template-columns: 1fr 240px;
+        gap: 12px;
+        align-items: center;
+        margin-bottom: 12px;
+      }
+      .row:last-child {
+        margin-bottom: 0;
+      }
+      .row label {
+        font-size: 13px;
+      }
+      input[type="text"],
+      input[type="number"],
+      select {
+        width: 100%;
+        padding: 6px 8px;
+        border-radius: 8px;
+        border: 1px solid var(--ct-border);
+        font-size: 13px;
+      }
+      input[type="text"]:focus-visible,
+      input[type="number"]:focus-visible,
+      select:focus-visible,
+      .button:focus-visible {
+        outline: 2px solid #1c1c1c;
+        outline-offset: 2px;
+      }
+      input[type="checkbox"] {
+        transform: scale(1.1);
+      }
+      .inline {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .actions {
+        margin-top: 16px;
+        display: flex;
+        gap: 10px;
+      }
+      .button {
+        border: 1px solid #1c1c1c;
+        background: #1c1c1c;
+        color: #fff;
+        border-radius: 10px;
+        padding: 8px 12px;
+        font-size: 13px;
+        cursor: pointer;
+        transition: transform 120ms ease, box-shadow 120ms ease;
+      }
+      .button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+      }
+      .button.secondary {
+        background: #fff;
+        color: #1c1c1c;
+      }
+      .note {
+        font-size: 12px;
+        color: #6b6458;
+      }
+      @media (max-width: 720px) {
+        .row {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+    <script type="module" crossorigin src="../../../assets/settings.js"></script>
+    <link rel="modulepreload" crossorigin href="../../../assets/modulepreload-polyfill.js">
+    <link rel="modulepreload" crossorigin href="../../../assets/storage.js">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Settings</h1>
+      <p class="note">Changes save automatically to Chrome Sync.</p>
+
+      <h2>Analysis</h2>
+      <div class="card">
+        <div class="row">
+          <label for="sensitivity">Detection sensitivity</label>
+          <select id="sensitivity">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+        <div class="row">
+          <label>Categories to track</label>
+          <div class="inline">
+            <label><input id="cat-insults" type="checkbox" /> Insults</label>
+            <label><input id="cat-threats" type="checkbox" /> Threats</label>
+            <label><input id="cat-harassment" type="checkbox" /> Harassment</label>
+            <label><input id="cat-profanity" type="checkbox" /> Profanity</label>
+          </div>
+        </div>
+        <div class="row">
+          <label for="min-severity">Minimum severity to display</label>
+          <input id="min-severity" type="number" min="0" max="100" />
+        </div>
+        <div class="row">
+          <label for="auto-suggest-threshold">Auto-suggest threshold</label>
+          <select id="auto-suggest-threshold">
+            <option value="20">20+</option>
+            <option value="40">40+</option>
+            <option value="60">60+</option>
+            <option value="80">80+</option>
+          </select>
+        </div>
+      </div>
+
+      <h2>Interface</h2>
+      <div class="card">
+        <div class="row">
+          <label for="theme">Theme</label>
+          <select id="theme">
+            <option value="auto">Auto</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </div>
+        <div class="row">
+          <label for="badge-position">Badge position</label>
+          <select id="badge-position">
+            <option value="auto">Auto</option>
+            <option value="right">Right</option>
+            <option value="left">Left</option>
+            <option value="above">Above</option>
+            <option value="below">Below</option>
+          </select>
+        </div>
+        <div class="row">
+          <label>Show underline</label>
+          <label><input id="show-underline" type="checkbox" /> Enabled</label>
+        </div>
+        <div class="row">
+          <label>Animations</label>
+          <label><input id="animations" type="checkbox" /> Enabled</label>
+        </div>
+      </div>
+
+      <h2>Privacy</h2>
+      <div class="card">
+        <div class="row">
+          <label>Anonymous mode (no logging)</label>
+          <label><input id="anonymous-mode" type="checkbox" /> Enabled</label>
+        </div>
+        <div class="row">
+          <label>History</label>
+          <div class="inline">
+            <button class="button secondary" id="clear-history">Clear history</button>
+            <button class="button secondary" id="export-history">Export data</button>
+          </div>
+        </div>
+      </div>
+
+      <h2>Messengers</h2>
+      <div class="card">
+        <div class="row">
+          <label>Enabled messengers</label>
+          <div class="inline">
+            <label><input id="enable-whatsapp" type="checkbox" /> WhatsApp</label>
+            <label><input id="enable-telegram" type="checkbox" /> Telegram</label>
+            <label><input id="enable-vk" type="checkbox" /> VK</label>
+            <label><input id="enable-discord" type="checkbox" /> Discord</label>
+          </div>
+        </div>
+      </div>
+
+      <h2>Account</h2>
+      <div class="card">
+        <div class="row">
+          <label for="backend-url">Backend URL</label>
+          <input id="backend-url" type="text" placeholder="http://127.0.0.1:8000" />
+        </div>
+        <div class="row">
+          <label for="backend-key">API key (optional)</label>
+          <input id="backend-key" type="text" placeholder="sk-..." />
+        </div>
+        <div class="row">
+          <label>Subscription</label>
+          <div class="note">Free</div>
+        </div>
+        <div class="row">
+          <label>Quota usage</label>
+          <div class="note">N/A</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

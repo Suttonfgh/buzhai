@@ -1,0 +1,7 @@
+import"./modulepreload-polyfill.js";import{d as v,c as u}from"./storage.js";const s=document.querySelector("#history-table"),r=document.querySelector("#empty"),a=document.querySelector("#refresh"),n=document.querySelector("#export"),l=document.querySelector("#clear");function p(o){return new Date(o).toLocaleString()}async function d(){const c=(await v()).slice().reverse();if(s){if(s.querySelectorAll(".row.data").forEach(e=>e.remove()),c.length===0){r&&r.removeAttribute("hidden");return}r&&r.setAttribute("hidden","true"),c.forEach(e=>{const i=e.severity>=70?"high":e.severity>=40?"mid":"",t=document.createElement("div");t.className="row data",t.innerHTML=`
+      <div><span class="score-chip ${i}">${e.severity}/100</span></div>
+      <div class="message-cell" title="${m(e.text)}">${m(e.text)}</div>
+      <div>${e.emotions.join(", ")||"-"}</div>
+      <div>${e.needs.join(", ")||"-"}</div>
+      <div>${p(e.timestamp)}</div>
+    `,s.appendChild(t)})}}function m(o){return o.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\"/g,"&quot;").replace(/'/g,"&#39;")}a==null||a.addEventListener("click",()=>void d());n==null||n.addEventListener("click",async()=>{const o=await v(),c=JSON.stringify(o,null,2),e=new Blob([c],{type:"application/json"}),i=URL.createObjectURL(e),t=document.createElement("a");t.href=i,t.download="conflict-translator-history.json",t.click(),URL.revokeObjectURL(i)});l==null||l.addEventListener("click",async()=>{await u(),d()});d();

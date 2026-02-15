@@ -1,0 +1,18 @@
+{
+  "name": "conflict-translator-extension",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "vite build && node scripts/build-content.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.257",
+    "@types/node": "^22.10.2",
+    "esbuild": "^0.23.1",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.0"
+  }
+}
